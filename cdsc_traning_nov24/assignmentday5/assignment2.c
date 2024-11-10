@@ -20,4 +20,3 @@ int main(){
     printf("number after removing the duplicate is :%d",result);
     return 0;
 }
-    

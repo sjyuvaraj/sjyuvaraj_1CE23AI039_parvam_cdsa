@@ -1,6 +1,7 @@
 #include<stdio.h>
 int main() {
 	int inputNumber = 0, remainderDigit = 0, sumOfDigits = 0, tempNumber = 0;
+	
 	puts("Enter a number (+ve integer) to find sum of its digits");
 	scanf("%d", &inputNumber);
 	tempNumber = inputNumber;
