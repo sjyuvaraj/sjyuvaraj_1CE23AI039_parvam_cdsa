@@ -761,13 +761,558 @@ int strLen(const char ptr[10]) {
 
 char* strcpy(char*, const char*)
 
-char* strcat(char*, const char*)
+char* strcat(char*, const char*) // length
 
 int strcmp(const char*, const char*)
 
 int stricmp(const char*, const char*)
 
-char* strrev(char*)
+int strcmpn(const char*, const char*, int)
+
+char* strchr(const char*, char);
+
+char* strrchr(const char*, char); // find length
+
+char* strrev(char*) // strrev
 
 strstr()
 strtok()
+---------------------------------------------------
+// Program to implement strrev()
+#include <stdio.h>
+
+char *strCpy(char *destination, const char *source)
+{
+    int i = 0;
+    for (; source[i] != '\0'; i++)
+    {
+        destination[i] = source[i];
+    }
+    destination[i] = '\0';
+    return destination;
+}
+
+int strLen(const char myString[])
+{
+    int i = 0;
+    for (; myString[i] != '\0'; i++)
+        ;
+    return i;
+}
+
+char *strRev(char *my_string)
+{
+    int j = strLen(my_string) - 1;
+    char temp = '\0';
+    for (int i = 0; i < j; i++, j--)
+    {
+        temp = my_string[i];
+        my_string[i] = my_string[j];
+        my_string[j] = temp;
+    }
+    return my_string;
+}
+
+int main(int argCount, char *args[])
+{
+    char userString[32] = ""; // {'\0'}
+    strCpy(userString, args[1]);
+    printf("User given string is %s \n", userString);
+    strRev(userString);
+    printf("Reversed user string is %s", userString);
+}
+------------------------------------------------------------------------
+STRUCTURE:
+
+struct Student {
+    int id;
+    char name[32];
+    short int semester;
+    char branch[5];
+};
+
+Compiler booking keeping:
+Student
+#    name   datatype   size(bytes)
+1    id     int         4
+2    name   char[]      32
+3    semester short int 2
+4    branch char[]      5 
+---------------------------------------------------------
+#include <stdio.h>
+
+struct Student
+{
+    int id;
+    char name[32];
+    short int semester;
+    char branch[5];
+};
+
+int main()
+{
+    struct Student student1 = {0, "", 0, ""}, student2 = {101, "Shivam", 3, "AIML"};
+    printf("size of student1 = %d", sizeof(student1));
+    printf("\nStudent1 details are\n Id =%d, Name = %s, Semester = %d, Branch = %s", student1.id, student1.name, student1.semester, student1.branch);
+    printf("\nStudent2 details are\n Id =%d, Name = %s, Semester = %d, Branch = %s", student2.id, student2.name, student2.semester, student2.branch);
+}
+-------------------------------------------------------------
+Call by value example (not good idea)
+
+#include <stdio.h>
+
+typedef struct Student
+{
+    int id;
+    char name[32];
+    short int semester;
+    char branch[5];
+} Student;
+
+void printStudent(Student student)
+{
+    printf("\nStudent details are\n Id =%d, Name = %s, Semester = %d, Branch = %s", student.id, student.name, student.semester, student.branch);
+}
+
+int main()
+{
+    Student student2 = {101, "Shivam", 3, "AIML"};
+    printStudent(student2); // call by value
+}
+-------------------------------------------
+Good idea is to pass the structure by address
+// COMPOSITION
+#include <stdio.h>
+
+typedef struct Address
+{
+    int doorNum;
+    int streetNum;
+    char city[32];
+    int pin;
+} Address;
+typedef struct Student
+{
+    int id;
+    char name[32];
+    short int semester;
+    char branch[5];
+    Address address;
+} Student;
+
+void printStudent(Student *ptr)
+{
+    printf("\nStudent details are\n Id =%d, Name = %s, Semester = %d, Branch = %s", (*ptr).id, ptr->name, (*ptr).semester, ptr->branch);
+    printf("\nStudent address details are\n DoorNum = %d, StreetNum = %d, City = %s, PIN= %d", ptr->address.doorNum, ptr->address.streetNum, ptr->address.city, ptr->address.pin);
+}
+
+int main()
+{
+    Student student2 = {101, "Shivam", 3, "AIML", {420, 20, "bengaluru", 560001}};
+    printStudent(&student2); // call by value
+}
+--------------------------------------------------------
+#include <stdio.h>
+
+typedef struct Address
+{
+    int doorNum;
+    int streetNum;
+    char city[32];
+    int pin;
+} Address;
+typedef struct Student
+{
+    int id;
+    char name[32];
+    short int semester;
+    char branch[5];
+    Address *ptr;
+} Student;
+
+void printStudent(Student *sptr)
+{
+    printf("\nStudent details are\n Id =%d, Name = %s, Semester = %d, Branch = %s", (*sptr).id, sptr->name, (*sptr).semester, sptr->branch);
+    if (sptr->ptr != NULL)
+        printf("\nStudent address details are\n DoorNum = %d, StreetNum = %d, City = %s, PIN= %d", sptr->ptr->doorNum, sptr->ptr->streetNum, sptr->ptr->city, sptr->ptr->pin);
+    else
+        puts("\nStudent has no address");
+}
+
+int main()
+{
+    Student students[100];
+
+
+    Student student2 = {101, "Shivam", 3, "AIML", NULL};
+    Address StudentAddress = {420, 20, "bengaluru", 560001};
+    // student2.ptr = &StudentAddress;
+    printStudent(&student2); // call by value
+}
+----------------------------------------------------------------
+#include <stdio.h>
+
+int main()
+{
+    int var = 50;
+    int *ptr;
+    ptr = &var;
+    printf("%d", *ptr);
+    int myFunction(int, int);
+    int (*funcPtr)(int, int);
+    funcPtr = &myFunction; // funcPtr = myFunction
+    myFunction(10, 20);
+    funcPtr(20, 40); // call to myFunction via the function pointer
+}
+
+#include <stdio.h>
+
+double findRectangleArea(double length, double breadth)
+{
+    return length * breadth;
+}
+
+double findProduct(double number1, double number2)
+{
+    return number1 * number2;
+}
+
+double findPerimeter(double length, double bredth)
+{
+    return 2 * (length + bredth);
+}
+
+int main()
+{
+    double (*p)(double, double);
+    p = &findProduct;
+    double result = p(5.55, 99.99);
+    printf("Product = %.2lf \n", result);
+    p = findRectangleArea;
+    result = p(17.0, 2.5);
+    printf("Area = %.2lf \n", result);
+    p = &findPerimeter;
+    result = p(4.0, 8.5);
+    printf("Perimeter = %.2lf", result);
+}
+-------------------------
+#include <stdio.h>
+
+double findRectangleArea(double length, double breadth)
+{
+    return length * breadth;
+}
+
+double findProduct(double number1, double number2)
+{
+    return number1 * number2;
+}
+
+double findPerimeter(double length, double bredth)
+{
+    return 2 * (length + bredth);
+}
+
+double polymorphicFunction(double (*p)(double, double), double number1, double number2)
+{
+    return p(number1, number2);
+}
+int main()
+{
+    double (*p)(double, double);
+    double result = polymorphicFunction(&findProduct, 10.5, 7.7);
+    printf("Product = %.2lf \n", result);
+    result = polymorphicFunction(&findPerimeter, 10.5, 7.7);
+    printf("Area = %.2lf \n", result);
+    result = polymorphicFunction(&findRectangleArea, 10.5, 7.7);
+    printf("Perimeter = %.2lf", result);
+}
+---------------------------------------------------
+typedef struct Student
+{
+    int id;
+    char name[32];
+    int semester;
+    char branch[8];
+} Participant;
+
+int main() {
+	Participant participants[50];
+}
+
+void* malloc(size_t);
+
+void* malloc(int);
+
+float arr[10];
+We ca store 10 float numbers
+40 bytes is allocated to arr
+
+float* ptr = (float*) malloc(40);
+
+float* ptr = (float*) malloc(sizeof(float));
+
+float* ptr = (float*) malloc(sizeof(float) * 10);
+
+scanf("%d", &length);
+float* ptr = (float*) malloc(sizeof(float) * length);
+---------------------------------------------------------
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    int size = 0;
+    printf("Enter number of students in the class: ");
+    scanf("%d", &size);
+    float *averageScores = (float *)malloc(sizeof(float) * size);
+    printf("Enter average scores of %d students \n", size);
+    for (int i = 0; i < size; i++)
+        scanf("%f", &averageScores[i]); // avgscores + i)
+
+    printf("Average scores of %d students are \n", size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("%-7.2f", averageScores[i]);
+    }
+}
+---------------------------------------------------------
+#include <stdio.h>
+#include <stdlib.h>
+
+int push(float *stk, int sp, int stackSize)
+{
+    if (stackSize == sp - 1)
+    {
+        puts("Stack is Full"); // Overflow
+        return sp;
+    }
+    sp++;
+    printf("Enter element to be pushed: ");
+    scanf("%f", &stk[sp]);
+    return sp;
+}
+
+int pop(float *stk, int sp)
+{
+    if (sp == -1)
+    {
+        puts("Stack is empty \n"); // undeflow
+        return sp;
+    }
+    printf("Popped element is %.2f", stk[sp]);
+    sp--;
+    return sp;
+}
+
+float top(const float *stk, int sp)
+{
+    if (sp == -1)
+        return -1.0f;
+    return stk[sp];
+}
+
+int isFull(const int sp, int stackSize)
+{
+    if (sp == stackSize - 1)
+    {
+        puts("Stack is Full \n");
+        return 1;
+    }
+    return 0;
+}
+
+void displayStack(const float *stk, int sp)
+{
+    if (sp == -1)
+    {
+        puts("Stack is empty \n");
+        return;
+    }
+    printf("Stack elements are: ");
+    for (int i = sp; i >= 0; i--)
+        printf("%-7.2f", stk[i]);
+    putc('\n', stdout);
+}
+
+int isEmpty(int sp)
+{
+    if (sp == -1)
+    {
+        puts("Stack is empty");
+        return 1;
+    }
+    return 0;
+}
+
+int main()
+{
+    int size = 0, choice = 0, sp = -1, numberOfOperations = 15;
+    float *stack = NULL;
+    float value = 0.0f;
+    printf("Enter number of elements of the Stack: ");
+    scanf("%d", &size);
+    stack = (float *)malloc(sizeof(float) * size);
+    printf("An empty stack of size %d is created \n", size);
+
+    do
+    {
+        puts("\n1:Push 2:Pop 3:Display 4:Top 5:Exit. Your choice plz: ");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            sp = push(stack, sp, size);
+            break;
+        case 2:
+            sp = pop(stack, sp);
+            break;
+        case 3:
+            displayStack(stack, sp);
+            break;
+        case 4:
+            value = top(stack, sp);
+            if (value == -1.0f)
+                puts("Stack is empty");
+            else
+                printf("Top element = %.2f \n", value);
+            break;
+        case 5:
+            puts("End of program");
+            numberOfOperations = 0;
+            break;
+        default:
+            puts("Invalid choice enetered");
+        }
+        numberOfOperations--;
+    } while (numberOfOperations >= 0);
+    free(stack);
+    stack = NULL; // we made the dangling pointer as null pointer
+    return 0;
+}
+
+
+---------------------------------------------------------
+Implement
+Create a dynamic array of type int
+int* queue  int fp  int rp
+
+enQueue - push
+deQueue - pop
+display() 1st ele to last
+isEmpty()
+isEfull()
+----------------------------------------------------------
+#include <stdio.h>
+#include <stdlib.h>
+
+int push(float *stk, int sp, int stackSize)
+{
+    if (stackSize == sp - 1)
+    {
+        puts("Stack is Full"); // Overflow
+        return sp;
+    }
+    sp++;
+    printf("Enter element to be pushed: ");
+    scanf("%f", &stk[sp]);
+    return sp;
+}
+
+int pop(float *stk, int sp)
+{
+    if (sp == -1)
+    {
+        puts("Stack is empty \n"); // undeflow
+        return sp;
+    }
+    printf("Popped element is %.2f", stk[sp]);
+    sp--;
+    return sp;
+}
+
+float top(const float *stk, int sp)
+{
+    if (sp == -1)
+        return -1.0f;
+    return stk[sp];
+}
+
+int isFull(const int sp, int stackSize)
+{
+    if (sp == stackSize - 1)
+    {
+        puts("Stack is Full \n");
+        return 1;
+    }
+    return 0;
+}
+
+void displayStack(const float *stk, int sp)
+{
+    if (sp == -1)
+    {
+        puts("Stack is empty \n");
+        return;
+    }
+    printf("Stack elements are: ");
+    for (int i = sp; i >= 0; i--)
+        printf("%-7.2f", stk[i]);
+    putc('\n', stdout);
+}
+
+int isEmpty(int sp)
+{
+    if (sp == -1)
+    {
+        puts("Stack is empty");
+        return 1;
+    }
+    return 0;
+}
+
+int main()
+{
+    int size = 0, choice = 0, sp = -1, numberOfOperations = 15;
+    float *stack = NULL;
+    float value = 0.0f;
+    printf("Enter number of elements of the Stack: ");
+    scanf("%d", &size);
+    stack = (float *)malloc(sizeof(float) * size);
+    printf("An empty stack of size %d is created \n", size);
+
+    do
+    {
+        puts("\n1:Push 2:Pop 3:Display 4:Top 5:Exit. Your choice plz: ");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            sp = push(stack, sp, size);
+            break;
+        case 2:
+            sp = pop(stack, sp);
+            break;
+        case 3:
+            displayStack(stack, sp);
+            break;
+        case 4:
+            value = top(stack, sp);
+            if (value == -1.0f)
+                puts("Stack is empty");
+            else
+                printf("Top element = %.2f \n", value);
+            break;
+        case 5:
+            puts("End of program");
+            numberOfOperations = 0;
+            break;
+        default:
+            puts("Invalid choice enetered");
+        }
+        numberOfOperations--;
+    } while (numberOfOperations >= 0);
+    free(stack);
+    stack = NULL; // we made the dangling pointer as null pointer
+    return 0;
+}
+------------------------------------------------------------------
