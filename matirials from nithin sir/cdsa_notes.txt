@@ -1,0 +1,773 @@
+CDSA and Problem solving training (10 days) City Engg College, Blr
+
+DAY1 MONDAY 04-11-2024
+
+Git commands:
+git status  # 
+git add .
+git commit -m "relavent msg"
+git push origin main
+---------------------------------------------
+'A0'
+'A' and '0'
+
+'A' has ASCII value of 65 01000001
+'0' has ASCII value of 48 00110000
+
+
+0 to 15
+
+39
+0010 0111
+
+39
+00000000 00100111
+
+-18
+18
+0001 0010
+1110 1101
+        1
+1110 1110
+-1*2(7) + 1*2(6) + 1*2(5) + 14
+-1*128 + 64 + 32 + 14
+= -128 + 110
+= -18
+
+-128 to +127 (signed one byte)
+1000 0000
+-1*2(7) 0
+= -128
+
+0111 1111
+= 127
+
+1100 0000
+1*2(7) + 1*2(6)
+= 128 + 64
+= 192
+
+0 to 255 (unsigned one byte)
+
+PPLs have a issue of data binding, and structuring the code in heirarchical design.
+Thus, PP strategy creates the issues like Tight coupling
+Difficult to create very big applications.
+
+OOP came as the answer for the above issues.
+IN OOP, we have the concepts like
+A Abstraction	To hide the implementations make the user easy to use.
+E Encapsulation	Better way of data and method binding (Access specifiers)	
+I Inheritance	Better way of reusing the existing solutions
+P Polymorphism	Applying modifications to the existing solution is easy
+
+C++ was the 1st successful OOPL built on C
+C++ = C + OOc
+C++ is an increment to C
+
+But C++ was not so high level and it was not machine independent language.
+
+Java came as a better alternative to C++
+More high level (Abstractions on Pointers, operator overloading, no global data, no hybrid inheritance)
+Exception handling
+By default multi threaded
+Machine independent
+Plug-ins can be easily created with help of Interfaces
+
+CLASS-2 SUNDAY, 1ST MARCH 2020
+
+STRUCTURE OF C PROGRAM
+#include
+other pre processors
+struct union and enum definitions 
+function declarations / prototype
+function definitions / solution / instructions / business logic
+
+
+The very existance use of programming and even a Computer for that matter, is 
+DATA. So at the core of programming is DATA.
+Data must be given at most priority.
+There are different kind of data.
+e.g. Numeric, alphabetic, alphanumeric, audio, image, video etc.
+DATA-TYPE	"Type of the data"
+Data types available in C are:
+Numeric: int, float, double
+alpha, alphanumeric: char, string
+We also have manipulators
+The 2 basic numeric data types:
+int			4 bytes
+double		8 bytes
+Every data in memory of the computer has a fixed size (in terms of bytes)
+
+float (half of double)	4 bytes (to store precision along with number)
+Manipulators:
+1. which changes the size
+	short	can be applied only to int (so  short int   is 2 bytes)
+	long	can be applied to int and double
+So long int is 4 bytes,  long long int is 8 bytes and int is 4 bytes
+
+2. which changes the sign
+	signed		to store -ve or +ve numbers
+	unsigned	to store only +ve numbers
+Note: All variables by default are signed.
+
+char		to store one ASCII character
+char[]		to store a string (a word, or gorup of words) " "
+
+LOOPS
+for 			0 or N times (where N value is known)
+while			0 or X times (Where X is unknown value)
+do-while		1 or X times (Where X is unknown value)
+
+CONDITIONAL
+if		else	switch	case	default		break	continue	return
+if(confition)
+  then fo this.
+  
+if(confition)
+	do this;
+else
+	do this;
+
+if(c)
+	if(c)
+	
+if(c1)
+   if(c2)
+     do this
+   else if(3)
+     do this
+   else
+     do this
+else
+   do this
+   
+if(finalYear)
+   allow;
+else if(pre )
+     if(aggre > 70)
+	    allow
+else
+    do not allow;
+	
+1. Check if a number is positive
+2. Check if a number is Even
+3. Check if a number is Even or Odd
+4. Check if a character is upper case 
+5. Check if a number is Perfect Square
+6. Check if a person is eligible to vote on age basis
+7. Check if a year is Leap year
+8. Check if an alphabet is a Vowel
+9. Check if a character is a digit or alphabet or a symbol
+10. Check if a number is divisible by 5
+11. Check if a number is 2 digit number
+12. Find smallest of 2 numbers
+13. Find biggest of 2 distinct numbers
+14. Find smallest of 3 distinct numbers
+---------------------------------------------------
+Ralational Operators:
+< > <= >= == !=
+All are binary oprs
+I/P are numbers
+O/P is boolean
+Left to right associtivity
+Has lesser precedence than arithmetic orps
+Used with Infix notation
+
+for i = 1; i <= 10; i++
+for i = 1; i < 11; i++
+
+[10, 20] closed interval
+(30, 45) open interval
+[10, 30) Right Open
+
+for i = 10; i <= 20; i++
+for i = 31; i < 45; i++
+for i = 10; i < 30; i++
+
+SRP
+
+i++;
+j--;
+a[i] = b[j];
+b[j]--;
+
+a[++i] = b[--j]--; // Never code this kind of bulky stmts
+----------------------------------------------
+Logical Operators
+&& || ! & |
+
+C1  C2  XandY  XorY
+F   F     F     F
+F   H
+
+// Check if a number is Even
+#include <stdio.h>
+int main()
+{
+    short int inputNumber = 0;
+    puts("Enter a number to check if it is Even");
+    scanf("%d", &inputNumber);
+    if (inputNumber % 2 == 0)
+        printf("%d is an Even number", inputNumber);
+    return 0;
+}
+-----------------------------------------
+// Check if a number is Even or not.
+#include <stdio.h>
+int main()
+{
+    short int inputNumber = 0;
+    puts("Enter a number to check if it is Even");
+    scanf("%d", &inputNumber);
+    if (inputNumber % 2 == 0)
+        printf("%d is an Even number", inputNumber);
+    else
+        printf("%d is not an Even number", inputNumber);
+    return 0;
+}
+--------------------------------------
+// Check if a number is Even or Odd
+#include <stdio.h>
+int main()
+{
+    short int inputNumber = 0;
+    puts("Enter a number to check if it is Even");
+    scanf("%d", &inputNumber);
+    if (inputNumber % 2 == 0)
+        printf("%d is an Even number", inputNumber);
+    else
+        printf("%d is an Odd number", inputNumber);
+    return 0;
+}
+---------------------------------------------------
+Write a program to print the result of the student by taking the average score.
+0  - 49 Fail
+50 - 74 Second class
+74 - 90 FC
+91 - 100 D
+Also check if the input is invalid
+
+#include <stdio.h>
+int main()
+{
+    int averageScore = 0;
+    puts("Enter average score of the student to print result");
+    scanf("%d", &averageScore);
+    if (averageScore >= 0 && averageScore <= 49)
+        puts("Fail");
+    else if (averageScore <= 74)
+        puts("Second Class");
+    else if (averageScore <= 90)
+        puts("First Class");
+    else if (averageScore <= 100)
+        puts("Distinction");
+    else
+        puts("Invalid Input");
+}
+-----------------------------------------------
+Print the Math table of a number for multiples upto 20
+
+#include <stdio.h>
+int main()
+{
+    int inputNumber = 0;
+    puts("Enter  number to print its Math table");
+    scanf("%d", &inputNumber);
+    for (int i = 1; i <= 20; i++)
+    {
+        printf("%2d * %02d = %03d \n", inputNumber, i, inputNumber * i);
+    }
+}
+// 18 * 1 = 18
+---------------------------------------------------
+Find the smallest digit in a number.
+Find the number of Even digits in a number.
+Find sum of digits in a number.
+Find the 2nd smallest digit in a number.
+9. Accept a number and find sum of digits of the number
+10.Accept a number and find count the number of digits in it.
+11.Accept a number and find biggest/smallest digit in the number
+12.Find sum of Even/Odd digits in the number
+13.Find the frequency of a digit in the number
+
+14.Find sum of Odd placed Even digits in the number
+15.Find 2nd smallest digit in the number
+16.Accept a number from user and find her lucky digit, where the lucky digit is found by finding sum of the digits of the number until a sigle digit number is reached. Thus if the sum is not a single digit number, apply the logic of finding sum of the digits on it.
+17. Find sum of Odd placed Even digits.
+
+HOW TO SOLVE A PROBLEM
+
+1. Understand the problem. Recognise the required data (I/P). Isolate/remove the unwanted information and data. Focus on the relevant information. Accertain what should be the O/P.
+Outcome: We know the I/P, O/P and the relevant information
+
+2. Build the solution using trial and error technique or mathematical formula or using a specific Algorithm. In this step we must not even think of programming.
+OutCome: We know the what is the solution(s)
+
+3. Write the Algorithm. Every step of the algorithm must be simple, unambigious and finite.
+OutCome: We have a clear visible solution as a procedure
+
+4. Write the Fake-code (Pseudocode) 
+OutCome: You have a solution that looks like a code
+
+5. Code it (via the languiage syntax)
+
+6. Good coding practices, naming standards, documentation, unit-testing
+
+7. Efficiency of algorithms, Optimization, development, DEvOps, Cyber Security, Installation, Maintainance
+-------------------------------------------------
+i/p: +ve integer  3457
+o/P: sum of digits of the number 19
+info: i/p num is +ve int
+
+We find that, getting the left most digit is impossible until unless we know the number of digits in the number.
+
+However, we can get the unit place digit from any number by dividing it by 10 and getting the remainder
+
+10) 3457 (345
+	3450
+	   7
+Thus, when we divide a number by 10 and do integer division (quotient is always int), as if we seperate/pluck/copy the remainder digit from the given number.
+
+Now we also observe that the quotient has not got the remainder digit.
+
+Thus, repeat the process on the quotient every time until we get Zero.
+
+
+1. Read N
+2. sumOfDigits = 0
+3. while N > 0 do:
+	 remainderDigit = N % 10 // copy the last digit
+	 N = N / 10 // remove the last digit from N
+	 sumOfDigits = sumOfDigits + remainderDigit
+4. print sumOfDigits as O/P
+
+N = 679
+s = 0
+while 679 > 0   // i=1
+	r = 679 % 10 = 9
+	N = 679 / 10 = 67
+	s = 0 + 9 = 9
+while 67 > 0   // i=2
+	r = 67 % 10 = 7
+	N = 67 / 10 = 6
+	s = 9 + 7 = 16
+while 6 > 0    // i=3
+	r = 6 % 10 = 6
+	N = 6 / 10 = 0
+	s = 16 + 6 = 22
+while 0 > 0  // i=4 There is no 4th iteration
+
+int main() {
+	int inputNumber = 0, remainderDigit = 0, sumOfDigits = 0, tempNumber = 0;
+	puts("Enter a number (+ve integer) to find sum of its digits");
+	scanf("%d", &inputNumber);
+	tempNumber = inputNumber;
+	while(inputNumber > 0) {
+		remainderDigit = inputNumber % 10;
+		sumOfDigits += remainderDigit;
+		inputNumber = inputNumber / 10;
+	}
+	printf("Sum of digits of %d is %d", tempNumber, sumOfDigits);
+	return 0;
+}
+---------------------------------------------
+DAY3 WEDNESDAY 06-11-2024
+
+int num = 35;
+int age = 35;
+int personAge = 35;
+
+int studentAge = 35;
+
+Object:
+int studentAge = 35;
+int minAge = 18;
+int maxAge = 80;
+string unit = "years";
+
+18
+80
+-------------------------------------------------------------
+int biscuitPrices[10];
+
+myFunction(biscuitPrices, 10);
+
+#include <stdio.h>
+int main()
+{
+    int x = -4, y = 1, z = 9;
+    if (y >= --x || x != ++z)
+    {
+        puts("Mysuru");
+    }
+    else
+    {
+        puts("Bengaluru");
+    }
+    printf("%d  %d  %d", x, y, z); // -5 1 9   -3 1 9
+}
+----------------------------------------
+#include <stdio.h>
+int main()
+{
+    int x = -4, y = 1, z = 9;
+    x++;
+    printf("%d  %d  %d \n", x, y, z); // -3 1 9
+    ++x;
+    printf("%d  %d  %d \n", x, y, z); // -2 1 9
+    y = z--;
+    printf("%d  %d  %d \n", x, y, z); // -2 9 8
+    z = ++x;
+    printf("%d  %d  %d \n", x, y, z); // -1 9 -1
+    x = y++ - ++y;
+    //  9   - 11
+    printf("%d  %d  %d \n", x, y, z); // -2 11 -1
+}
+-----------------------------------------------
+#include <stdio.h>
+int main()
+{
+    int x = 11, y = 3, z = 19;
+    if (z-- >= --x | y++ == x && z != y)
+        puts("Sarakki");
+    else
+        puts("Silk Board");
+    printf("%d  %d  %d \n", x, y, z); // 10 4 18
+}
+---------------------------------------
+#include <stdio.h>
+int main()
+{
+    int choice = 0;
+    puts("Welcome to Madurai Cafe");
+    puts("1:Banne-Dosa 2:Upma 3:Rava-idli \nYour choice? ");
+    scanf("%d", &choice);
+    switch (choice)
+    {
+    case 1:
+        puts("Your Tasty dosa Sir");
+        break;
+    case 2:
+        puts("Your yummy upma Maam");
+        break;
+    case 3:
+        puts("Your delicious idli Sir");
+        break;
+    default:
+        puts("This is not garden Sir");
+    }
+    puts("Thank you Visit again");
+    return 0;
+}
+------------------------------
+Check if a number is Prime
+Print the Prime numbers between m and n (m < n)
+Print the Nth Prime number
+
+Print the Nth term of the series: 1 2 2 3 3 5 5 7 8 11 13 13
+Odd terms:  1   2   3   5   8   13 (N/2+1)th term
+Even Terms: 2   3   5   7   11  13 n/2th term
+
+Print Fibo series of N terms
+Print Nth Fibo term
+Check if a number is Prime
+Find Nth Prime number
+-------------------------------------
+DAY4 THURSDAY 07-01-2024
+
+Below link is: 
+How To Keep Applications Organised In Your Computer
+https://www.youtube.com/watch?v=SY1UNqOwabo
+
+How To Sync Files Between GitHub And folder in our laptop
+https://www.youtube.com/watch?v=EWttNzNBqBc
+
+How To Use GitHub And Create New Repository
+https://www.youtube.com/watch?v=h5Xr9_L4x7M
+
+App Installations for learning Web App Development and GitHub
+https://www.youtube.com/watch?v=B3s3WT-05H0&t=49s
+----------------------------------------------------------------
+#include <stdio.h>
+int main()
+{
+    int num1 = 10, num2 = 20, num3 = 15, smallestNumber = 0;
+
+    smallestNumber = (num1 < num2) ? num1 : num2;
+    printf("Smallest among num1 and num2 is %d \n", smallestNumber);
+
+    smallestNumber = (num1 < num2 && num1 < num3) ? num1 : (num2 < num3) ? num2
+                                                                         : num3;
+    printf("Smallest among the three numbers is %d \n", smallestNumber);
+    return 0;
+}
+--------------------------------------------------
+TYPE CASTING:
+int num = 17/2;
+printf("%d  %f", num, num); // 8  *
+
+float num = 17/2;
+printf("%d  %f", num, num); // 0  8.5
+
+int num = (float)(17.0 / 2);
+printf("%d  %f", num, num);  // 8  0
+
+float num = (double) ((int) 17.5 / 3);
+
+--------------------------------------------------
+POINTERS:
+
+Unary & "address of" opr.
+It can be applied only to a variable, including pointers (because pointers are also variables). When we apply & to a variable, we get its address.
+
+Unary * "value at" OR "de-referencing" opr
+It can be applied only to an address including pointers (because pointers hold address). When we apply * to an address, we get value present in that address, this is called as derefrencing the address.
+
+Pointers videos:
+https://www.youtube.com/@outstanding20mysuru9
+-----------------------------------------------------
+#include <stdio.h>
+
+int main()
+{
+    double d = 5.55;
+    double *dptr = NULL;
+    dptr = &d;
+    printf("Value of d = %lf \n", d);
+    printf("Value of d = %lf \n", *(&d));
+    printf("Address of d = %p   %u \n", &d, &d);
+    printf("Address of d = %p   %u \n", dptr, dptr);
+    printf("Value of dptr = %p \n", dptr);
+    printf("Value of dptr = %p \n", *(&dptr));
+    printf("Value of dptr = %p \n", &d);
+    printf("Value of d = %lf \n", *dptr);
+    printf("Address of dptr = %u \n", &dptr);
+}
+------------------------------------------------------
+#include <stdio.h>
+
+int main()
+{
+    double d = 5.55;
+    double *dptr = NULL;
+    dptr = &d;
+    double **pp = &dptr;
+    printf("Value of pp = %p  %u \n", pp, pp);
+    printf("Address of pp = %p  %u \n", &pp, &pp);
+    printf("Value of dptr = %p   %u \n", *pp, *pp);
+    printf("Address of dptr = %p   %u \n", pp, pp);
+    printf("Value of d = %lf \n", **pp);
+    printf("Address of d = %p   %u \n", *pp, *pp);
+    printf("Value of d = %lf \n", ***(&pp));
+}
+/*
+print value of d in a longest possible way
+***(&pp)
+value at[value at[value at[address of pp]]]
+v at[v at[v at[9301]]]
+v at[v at[5501]]
+v at[2101]
+4.5
+= d
+*/
+--------------------------------------------------
+Garbage Value 
+default value
+empty value
+int main() {
+	int num;
+	float *ptr; // WILD Pointer
+	*ptr = some value;
+}
+---------------------------------
+Memory Management of a program
+Different stages of a program
+Function Call Stack (How functions work implicitly)
+
+Special purpose registers:
+IR: instruction register:
+It hold address of current instruction that is running
+PC: program counter
+It holds address of next instruction to be executed
+FP: Frame Pointer
+It holds address of the frame of the function that is currently running.
+FRame: Memory allocated to a function
+SP: Stack pointer
+It points to the top frame in the Stack
+
+Contents of a Frame:
+1. local variables declared inside the function
+2. function parameters
+3. Linkages (addresses of the called function/callees)
+4. Return address (RA). The address of instruction to which the control should come back.
+
+void decimalToBinary(int);
+int main(int argCount, char* args[]) {
+	int n = atoi(args[1]);
+	printf("The Binary equivalent of %d is:  ", n);
+	decimalToBinary(n); // call by value
+}
+
+void decimalToBinary(int num) {
+	if (num == 0) {
+		return;
+	}
+	decimalToBinary(num / 2);
+	printf("%d", num % 2);
+}
+-----------------------------------
+#include <stdio.h>
+#include <stdlib.h>
+
+long long int findFactorial(short int num)
+{
+    if (num == 1 || num == 0)
+        return 1;
+    return num * findFactorial(num - 1);
+}
+
+long long int findFactorial1(short int num)
+{
+    if (num == 0 || num == 1)
+        return 1;
+    long long int factorialNum = 1;
+    for (int i = 2; i <= num; i++)
+        factorialNum = factorialNum * i;
+    return factorialNum;
+}
+
+int main(int argCount, char *args[])
+{
+    short int inputNum = atoi(args[1]);
+    long long int factorialNum = findFactorial(inputNum);
+    printf("Factorial of %d is %lld", inputNum, factorialNum);
+}
+--------------------------------------------
+DAY5 FRIDAY 08-11-2024
+
+bit wise operators:
+int main() {
+	short int num1 = 10, num2 = 19, result = 0;
+	result = num1 & num2;
+	printf("And Result = %d \n", result);
+	result = num1 | num2;
+	printf("Or Result = %d \n", result);
+	result = num1 ^ num2;
+	printf("Xor Result = %d \n", result);
+	result = ~num1;
+	printf("Compliment Result = %d \n", result);
+	result = num1 << 2;
+	printf(" Result = %d \n", result);
+	result = num1 >> 2;
+	printf(" Result = %d \n", result);
+}
+
+num1 = 10
+num2 = 19
+
+0000 1010  num1
+0001 0011  num2
+
+0000 0010  &   2
+
+0001 1011  |   27
+
+0001 1001  ^   25
+
+1111 0101  ~   -128 + 64 + 32 +16 +5 = -64+53 = -11
+
+0010 1000  40
+0000 0010  2
+------------------------------------------------
+#include <stdio.h>
+int main()
+
+    // short int num1 = 10, num2 = 19, result = 0;
+    int num1 = 0x7e;
+    int num2 = 89;
+    int num3 = 073;
+    printf("%d   %i    %o   %x \n", num1, num1, num1, num1);
+    printf("%d   %i    %o   %X \n", num2, num2, num2, num2);
+    printf("%d   %i    %o   %x \n", num3, num3, num3, num3);
+}
+-------------------------------------------------------
+ARRAYS:
+
+int as1, as2.......as 5000 times;
+
+int averageScores[5000];
+
+> In an array all the elements will be of the same DT
+> The array size is fixed at its creation (declaration) and it cannot modified later.
+> An Array is memory inefficient DS
+> Time taken to access (look-up) any element in an array is same and it is O(1) (one unit time). And hence Array is time efficient DS.
+> An Array is implemented using pointer and pointer arithmetic
+> An array is a DS because all of its elements stored in contigious memory locations.
+
+HOW ARRAY IS IMPLEMENTED:
+
+float arr[5] {0.0f};
+arr[0]  the 1st element
+arr[2] the 3rd element
+
+arr[2] will re-writeen by compiler as *(arr + 2)
+So, the name of the array is always an address.
+It is the address of 1st element in the array
+-----------------------------------------------------
+// Program to find smallest and biggest elements of the array
+#include <stdio.h>
+#include <stdlib.h>
+int main(int argCount, char *args[])
+{
+    float numbers[10] = {0.0f};
+    float smallestNumber = 0.0f, biggestNumber = 0.0f;
+    printf("User given %d numbers are \n", argCount - 1);
+    for (int i = 1; i < argCount; i++)
+    {
+        numbers[i - 1] = atof(args[i]);
+        printf("%-6.2f", numbers[i - 1]);
+    }
+    smallestNumber = biggestNumber = numbers[0];
+    for (size_t i = 0; i < argCount - 1; i++)
+    {
+        if (smallestNumber > numbers[i])
+            smallestNumber = numbers[i];
+        if (biggestNumber < numbers[i])
+            biggestNumber = numbers[i];
+    }
+    printf("\nSmallest number = %.2f, Biggest number is %.2f", smallestNumber, biggestNumber);
+}
+---------------------------------------------------------
+Assignments:
+
+1. Find frequency of a number in an array
+1. Remove duplicates from an array
+
+STRINGS:
+
+string handling functions
+string.h
+
+int strlen(const char*);
+
+int strLen(const char* ptr) {
+}
+
+int strLen(const char ptr[]) {
+}
+
+int strLen(const char ptr[10]) {
+}
+
+char* strcpy(char*, const char*)
+
+char* strcat(char*, const char*)
+
+int strcmp(const char*, const char*)
+
+int stricmp(const char*, const char*)
+
+char* strrev(char*)
+
+strstr()
+strtok()
