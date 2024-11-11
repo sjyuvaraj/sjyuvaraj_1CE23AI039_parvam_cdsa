@@ -1,0 +1,10 @@
+class Node{
+    Node(){
+        System.out.println("hello");
+    }
+}
+public class Main{
+    public static void main(String[] args){
+        new Node();
+    }
+}
