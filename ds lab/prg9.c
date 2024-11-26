@@ -1,7 +1,3 @@
-9) Develop a Program in C for the following operations on Singly Circular Linked List
-(SCLL) with header nodes a. Represent and Evaluate a Polynomial P(x,y,z) = 6x 2 y 2 z4yz 5 +3x 3 yz+2xy 5 z-2xyz 3 b. Find the sum of two polynomials POLY1(x,y,z) and
-POLY2(x,y,z) and store the result in POLYSUM(x,y,z) Support the program with
-appropriate functions for each of the above operations
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -42,8 +38,7 @@ return;
 }
 struct Term* current = head;
 do {
-printf("%dx^%dy^%dz^%d", current->coeff, current->x_exponent, current-
->y_exponent, current->z_exponent);
+printf("%dx^%dy^%dz^%d", current->coeff, current->x_exponent, current->y_exponent, current->z_exponent);
 current = current->next;
 if (current != head) {
 printf(" + ");
