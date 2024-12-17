@@ -1,19 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
-// Structure for a Binary Search Tree (BST) Node
 struct Node {
 int data;
 struct Node* left;
 struct Node* right;
 };
-// Function to create a new node with the given data
 struct Node* createNode(int value) {
 struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
 newNode->data = value;
 newNode->left = newNode->right = NULL;
 return newNode;
 }
-// Function to insert a value into the BST
 struct Node* insert(struct Node* root, int value) {
 if (root == NULL) {
 return createNode(value);
@@ -25,7 +22,6 @@ root->right = insert(root->right, value);
 }
 return root;
 }
-// Function to perform inorder traversal of the BST
 void inorderTraversal(struct Node* root)
 {
 if (root != NULL) {
@@ -34,7 +30,6 @@ printf("%d ", root->data);
 inorderTraversal(root->right);
 }
 }
-// Function to perform preorder traversal of the BST
 void preorderTraversal(struct Node* root) {
 if (root != NULL) {
 printf("%d ", root->data);
@@ -42,7 +37,6 @@ preorderTraversal(root->left);
 preorderTraversal(root->right);
 }
 }
-// Function to perform postorder traversal of the BST
 void postorderTraversal(struct Node* root) {
 if (root != NULL) {
 postorderTraversal(root->left);
@@ -50,7 +44,6 @@ postorderTraversal(root->right);
 printf("%d ", root->data);
 }
 }
-// Function to search for a value in the BST
 struct Node* search(struct Node* root, int key) {
 if (root == NULL || root->data == key) {
 return root;
@@ -60,7 +53,6 @@ return search(root->left, key);
 }
 return search(root->right, key);
 }
-// Function to free the entire BST
 void freeBST(struct Node* root) {
 if (root != NULL) {
 freeBST(root->left);
