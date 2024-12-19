@@ -1,0 +1,9 @@
+library(MASS)
+data("mammals")
+ds=mammals
+pcoeff<-cor(x=ds$body,y=ds$brain,method="pearson")
+pcoeff
+scoeff<-cor(x=ds$body,y=ds$brain,method="spearman")
+scoeff
+plot(x=ds$body,y=ds$brain)
+plot(x=log(ds$body),y=log(ds$brain))
