@@ -15,5 +15,3 @@ public class CarMain{
         System.out.println("Offer Price: " + car1.getPrice());
     }
 }
-
-
